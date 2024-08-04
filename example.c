@@ -17,13 +17,14 @@ uint32_t pixels[WIDTH * HEIGHT];
 void checker_example(void) {
     olivec_fill(pixels, WIDTH, HEIGHT, 0xFF202020);
 
-    for (int i = 0; i < ROWS; i++) {
-        for (int j = 0; j < COLS; j++) {
-            if ((i + j) % 2 == 1) {
-                olivec_fill_rect(pixels, WIDTH, HEIGHT, j * CELL_WIDTH,
-                                 i * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT,
-                                 0xFF2020FF);
-            }
+    for (int i = 0; i < ROWS * COLS; i++) {
+        int col = i % COLS;
+        int row = i / COLS;
+
+        if ((row + col) % 2 == 1) {
+            olivec_fill_rect(pixels, WIDTH, HEIGHT, col * CELL_WIDTH,
+                             row * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT,
+                             0xFF2020FF);
         }
     }
 }
